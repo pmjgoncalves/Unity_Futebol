@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 7c3c2e05bb9247d4d94a8e2390ed8121
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cartoony Cute
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d27d88e63218af742b75f2b6c8b7b1d0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,2 +1,2 @@
 # Unity_Futebol
-2D Futebol Game made with Unity
+Unity_Futebol Game made with Unity
