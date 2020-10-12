@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMenuController : MonoBehaviour
 {
     public Animator animator;
-    public bool slideUp = false;
+    public Button soundButton;
+    public Sprite soundOn, soundOff;
+    private AudioSource audioSource;
+    private bool slideUp = false;
 
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     public void SlideSettingsPanel()
     {
         if(slideUp)
@@ -19,9 +27,21 @@ public class StartMenuController : MonoBehaviour
             slideUp = true;
         }
     }
-
     public void StartGame()
     {
-        SceneManager.LoadScene("Level Menu");
+        SceneManager.LoadScene("Level 1");
+    }
+    public void SetAudio()
+    {
+        if (audioSource.mute)
+        {
+            audioSource.mute = !audioSource.mute;
+            soundButton.image.sprite = soundOn;
+        }
+        else
+        {
+            audioSource.mute = !audioSource.mute;
+            soundButton.image.sprite = soundOff;
+        }
     }
 }
