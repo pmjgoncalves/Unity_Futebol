@@ -27,9 +27,9 @@ public class StartMenuController : MonoBehaviour
             slideUp = true;
         }
     }
-    public void StartGame()
+    public void LoadScene()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Level Menu");
     }
     public void SetAudio()
     {
