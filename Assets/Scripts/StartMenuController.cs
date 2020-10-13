@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class StartMenuController : MonoBehaviour
 {
-    public Animator animator;
+    public Animator sliderAnimator;
+    public Animator infoAnimator;
     public Button soundButton;
     public Sprite soundOn, soundOff;
     private AudioSource audioSource;
@@ -18,12 +19,25 @@ public class StartMenuController : MonoBehaviour
     {
         if(slideUp)
         {
-            animator.Play("Slide Down");
+            sliderAnimator.Play("Slide Down");
             slideUp = false;
         }
         else
         {
-            animator.Play("Slide Up");
+            sliderAnimator.Play("Slide Up");
+            slideUp = true;
+        }
+    }
+    public void SlideInfoPanel(bool infoUp)
+    {
+        if (infoUp)
+        {
+            infoAnimator.Play("Slide Up");
+            slideUp = false;
+        }
+        else
+        {
+            infoAnimator.Play("Slide Down");
             slideUp = true;
         }
     }
@@ -43,5 +57,10 @@ public class StartMenuController : MonoBehaviour
             audioSource.mute = !audioSource.mute;
             soundButton.image.sprite = soundOff;
         }
+    }
+
+    public void OpenFacebookPage()
+    {
+        Application.OpenURL("https://www.facebook.com/profile.php?id=100008954057994");
     }
 }
