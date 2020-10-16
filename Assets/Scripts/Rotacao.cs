@@ -3,26 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 #pragma warning restore IDE0005 // Using directive is unnecessary.
 using UnityEngine;
+#pragma warning disable IDE0005 // Using directive is unnecessary.
 using UnityEngine.UI;
-
+#pragma warning restore IDE0005 // Using directive is unnecessary.
 
 public class Rotacao : MonoBehaviour
 {
+
     //Posição Seta
-   [SerializeField]private Transform posStart;
+    [SerializeField] private Transform posStart;
     //Seta
-   [SerializeField]private Image setaImg;
+    [SerializeField] private Image setaImg;
     //Ang
     public float zRotate;
-
+    public bool liberaRot = false;
+    public bool liberaTiro = false;
 
     void Start()
     {
         PosicionaSeta();
-        Posicionabola();
+        PosicionaBola();
+        LimitaRotacao();
     }
 
-    
+    // Update is called once per frame
     void Update()
     {
         RotacaoSeta();
@@ -33,29 +37,73 @@ public class Rotacao : MonoBehaviour
     {
         setaImg.rectTransform.position = posStart.position;
     }
-    void Posicionabola()
+
+    void PosicionaBola()
     {
         this.gameObject.transform.position = posStart.position;
     }
 
     void RotacaoSeta()
     {
-        setaImg.rectTransform.eulerAngles = new Vector3(0,0,zRotate);
+        setaImg.rectTransform.eulerAngles = new Vector3(0, 0, zRotate);
     }
 
     void InputDeRotacao()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            zRotate += 2.5f;
-        }
+        
 
-        if (Input.GetKey(KeyCode.DownArrow))
+#pragma warning disable CS0665 // Assignment in conditional expression is always constant
+        if (liberaRot == true)
+#pragma warning restore CS0665 // Assignment in conditional expression is always constant
         {
-            zRotate -= 2.5f;
+            
+            float moveY = Input.GetAxis("Mouse Y");
+
+            if (zRotate < 90)
+            {
+                if (moveY > 0)
+                {
+                    zRotate += 2.5f;
+                }
+            }
+
+           if(zRotate > 0)
+            {
+                if (moveY < 0)
+                {
+                    zRotate -= 2.5f;
+                }
+            }
+
+            
+
         }
 
     }
 
+    void LimitaRotacao()
+    {
+        if (zRotate >= 90)
+        {
+            zRotate = 90;
+        }
+
+        if (zRotate <= 0)
+        {
+            zRotate = 0;
+        }
+
+    }
+
+    void OnMouseDown()
+    {
+        liberaRot = true;
+    }
+
+    void OnMouseUp()
+    {
+        liberaRot = false;
+        liberaTiro = true;
+    }
 
 }
